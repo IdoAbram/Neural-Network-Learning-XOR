@@ -66,16 +66,15 @@ int try(struct MyNeuralNet* nn, double** training_inputs, double** training_outp
 
 			nn->outputLayer[j] = sigmoid(activation);
 		}
-
+		counter++;
 		if (round(nn->outputLayer[0]) == training_outputs[i][0]) {
 				printf("Epoch %d, Input: %g %g, Output: %g, Predicted Output: %g, success\n",
 					 counter, training_inputs[i][0], training_inputs[i][1], training_outputs[i][0], nn->outputLayer[0]);
 				returnedValue = 1;
-				counter++;
 			}
 		else {
-			printf("Epoch , Input: %g %g, Output: %g, Predicted Output: %g, failed\n",
-				training_inputs[i][0], training_inputs[i][1], training_outputs[i][0], nn->outputLayer[0]);
+			printf("Epoch %d, Input: %g %g, Output: %g, Predicted Output: %g, failed\n",
+				counter, training_inputs[i][0], training_inputs[i][1], training_outputs[i][0], nn->outputLayer[0]);
 		}
 		
 		// Backpropagation
